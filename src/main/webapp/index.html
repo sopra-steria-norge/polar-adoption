@@ -1,36 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Info windows</title>
     <style>
-        #map_canvas {
-            width: 900px;
-            height: 800px;
+        html, body, #map-canvas {
+            height: 90%;
+            margin:10px;
+            padding: 10px
         }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script>
+        // This example displays a marker at the center of Australia.
+        // When the user clicks the marker, an info window opens.
+
         function initialize() {
-            var map_canvas = document.getElementById('map_canvas');
-            var map_options = {
-                center: new google.maps.LatLng(77 ,20),
+            var myLatlng = new google.maps.LatLng(78,17);
+            var mapOptions = {
                 zoom: 4,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            }
-            var map = new google.maps.Map(map_canvas, map_options)
+                center: myLatlng
+            };
 
+            var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-            //var ctaLayer = new google.maps.KmlLayer({
-            //    url: 'http://www.anderssandbox.com:8081/BadestederOslo.kml'
-            //});
-            //ctaLayer.setMap(map);
+            var contentString = '<div id="content">'+
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    '<h1 id="firstHeading" class="firstHeading">Polar bear 1</h1>'+
+                    '<div id="bodyContent">'+
+                    '<p>Her kommer detaljert info</p>'+
+                    '</div>'+
+                    '</div>';
 
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: 'Polar bear 1'
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map,marker);
+            });
         }
+
         google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
 </head>
 <body>
 <h1>Polaradoption</h1>
-<div id="map_canvas"></div>
+<div id="map-canvas"></div>
 </body>
 </html>
