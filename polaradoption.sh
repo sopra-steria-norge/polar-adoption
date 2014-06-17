@@ -23,9 +23,9 @@ fi
 _start() {
 	pidfile=pid
 	if [ ! -f $pidfile ]; then
-		nohup java -jar current/frank.jar current/frank.war 2>> logs/error.log >> logs/server.log &
+		nohup java -jar current/polaradaption.jar current/polaradaption.war 2>> logs/error.log >> logs/server.log &
 		PID=$!
-		echo $PID > /home/anders/frankapp/pid
+		echo $PID > /home/anders/polaradoption/pid
 		info "Startet app med PID $PID"
 	else
       warn "Kjører allerede"

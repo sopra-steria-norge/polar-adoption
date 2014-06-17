@@ -41,7 +41,7 @@ info "BYGGER"
 mvn clean install
 
 yellow ""
-yellow "  deployer frank"
+yellow "  deployer polaradapt"
 yellow ""
 
 DEFAULT_JAR=`find . -name *jar-with-dependencies.jar`
@@ -64,15 +64,15 @@ fi
 
 
 	HOST="www.anderssandbox.com"
-	BASE="/home/anders/frankapp"
+	BASE="/home/anders/polaradoption"
 
 info "Deployer til $EVN på $HOST:$BASE med versjon $VERSION med jar $JAR og war $WAR"
 
 ssh anders@$HOST "mkdir -p $BASE/$VERSION"
 info "Laster opp jar"
-scp $JAR anders@$HOST:$BASE/$VERSION/frank.jar
+scp $JAR anders@$HOST:$BASE/$VERSION/polaradaption.jar
 info "Laster opp war"
-scp $WAR anders@$HOST:$BASE/$VERSION/frank.war
+scp $WAR anders@$HOST:$BASE/$VERSION/polaradaption.war
 ssh anders@$HOST "ln -s -f $VERSION -T $BASE/current"
-ssh anders@$HOST "$BASE/frank.sh stop"
-ssh anders@$HOST "$BASE/frank.sh start"
+ssh anders@$HOST "$BASE/polaradoption.sh stop"
+ssh anders@$HOST "$BASE/polaradoption.sh start"

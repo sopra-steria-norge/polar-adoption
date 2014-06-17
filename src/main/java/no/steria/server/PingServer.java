@@ -20,7 +20,7 @@ public class PingServer {
         if (args.length > 0) {
             warFile = args[0];
         }
-        new PingServer(getPort(8081),warFile).start();
+        new PingServer(getPort(8082),warFile).start();
     }
 
     private void start() throws Exception {
